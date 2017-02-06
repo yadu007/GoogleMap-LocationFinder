@@ -1,4 +1,4 @@
-package com.example.synapse_system.map;
+package com.example.Mine.map;
 
 
         import android.Manifest;
