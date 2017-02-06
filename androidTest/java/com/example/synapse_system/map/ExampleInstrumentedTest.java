@@ -1,4 +1,4 @@
-package com.example.synapse_system.map;
+package com.example.Mine.map;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
