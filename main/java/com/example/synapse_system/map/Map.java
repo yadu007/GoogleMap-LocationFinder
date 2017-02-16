@@ -41,14 +41,10 @@ public class Map extends FragmentActivity implements OnMapReadyCallback,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-
-
          PermissionCheck();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
     }
 
     @Override
@@ -70,8 +66,6 @@ public class Map extends FragmentActivity implements OnMapReadyCallback,
         }
 
     }
-
-
     protected synchronized void Googlemapclient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -80,8 +74,6 @@ public class Map extends FragmentActivity implements OnMapReadyCallback,
                 .build();
         mGoogleApiClient.connect();
     }
-
-
     @Override
     public void onConnected(Bundle bundle) {
 
@@ -96,13 +88,11 @@ public class Map extends FragmentActivity implements OnMapReadyCallback,
         }
 
     }
-
     @Override
     public void onConnectionSuspended(int i) {
         Toast.makeText(this, "Connection Suspended", Toast.LENGTH_SHORT).show();
 
     }
-
     @Override
     public void onLocationChanged(Location location) {
 
@@ -110,8 +100,6 @@ public class Map extends FragmentActivity implements OnMapReadyCallback,
         if (mCurrLocationMarker != null) {
             mCurrLocationMarker.remove();
         }
-
-
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
@@ -120,7 +108,6 @@ public class Map extends FragmentActivity implements OnMapReadyCallback,
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-
 
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
@@ -148,36 +135,21 @@ public class Map extends FragmentActivity implements OnMapReadyCallback,
                 }}
 
         });
-
-
-
-
     }
-
-
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Toast.makeText(this, "Connection Failed", Toast.LENGTH_SHORT).show();
-
     }
-
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-
     public void PermissionCheck(){
-
-
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     MY_PERMISSIONS_REQUEST_LOCATION);
 
-
     }
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
-
 
                     if (ContextCompat.checkSelfPermission(this,
                             Manifest.permission.ACCESS_FINE_LOCATION)
@@ -195,7 +167,5 @@ public class Map extends FragmentActivity implements OnMapReadyCallback,
                 }
 
         }
-
-
 
 }
